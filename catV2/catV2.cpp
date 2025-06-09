@@ -15,7 +15,7 @@ int main(void) {
     printf("`  \\/     /\n");
     printf("   | \\|| ||\n");
     printf("   \\ '|| ||\n");
-    printf("    \\)()-())");
+    printf("    \\)()-())\n");
 
     char str[100];
     printf("야옹이의 이름을 지어 주세요: ");
@@ -27,30 +27,67 @@ int main(void) {
 
     int x = 0, y = 2;
     int cat = 2;
+    int cp = 0;
+    int feel = 3;
 
     while (1) {
         printf(" ==================== 현재 상태 ===================\n");
         printf(" 현재까지 만든 수프: %d개\n", x);
-        printf(" 집사와의 관계(0~4): %d\n", y);
+        printf(" CP: %d 포인트\n", cp);
+        printf(" %s기분(0~3):%d\n", str, feel);
 
+        if (feel == 0) {
+            printf(" 기분이 매우 나쁩니다.\n");
+        }
+        else if (feel == 1) {
+            printf(" 심심해합니다.\n");
+        }
+        else if (feel == 2) {
+            printf(" 식빵을 굽습니다.\n");
+        }
+        else if (feel == 3) {
+            printf(" 골골송을 부릅니다.\n");
+        }
+
+        printf(" 집사와의 관계(0~4): %d\n", y);
+       
         if (y == 0) {
-            printf("  곁에 오는 것조차 싫어합니다.\n");
+            printf(" 곁에 오는 것조차 싫어합니다.\n");
         }
         else if (y == 1) {
-            printf("  간식 자판기 취급입니다.\n");
+            printf(" 간식 자판기 취급입니다.\n");
         }
         else if (y == 2) {
-            printf("  그럭저럭 쓸 만한 집사입니다.\n");
+            printf(" 그럭저럭 쓸 만한 집사입니다.\n");
         }
         else if (y == 3) {
-            printf("  훌륭한 집사로 인정 받고 있습니다.\n");
+            printf(" 훌륭한 집사로 인정 받고 있습니다.\n");
         }
         else if (y == 4) {
-            printf("  집사 껌딱지 입니다.\n");
+            printf(" 집사 껌딱지 입니다.\n");
         }
         printf(" ==================================================\n");
 
         Sleep(500);
+
+        
+        printf("6-2: 주사위눈이 4 이하이면 그냥 기분이 나빠집니다.\n");
+        srand((unsigned int)time(NULL));
+        int m = rand() % 6 + 1;
+        printf("주사위를 굴립니다. 또르르...\n"); 
+        printf("%d이(가) 나왔습니다.\n", m);
+
+        if (m <= 4) {
+            int before = feel;
+            if (feel > 0) {
+                feel--;
+            }
+            printf("%s의 기분이 나빠집니다: %d -> %d\n", str, before, feel);
+        }
+        else {
+            printf("%s의 기분은 그대로입니다: %d\n", str, feel);
+        }
+
 
         int z = 0;
         int soup = rand() % 3;
@@ -167,6 +204,6 @@ int main(void) {
         Sleep(2500);
         system("cls");
     }
-
+    
     return 0;
 }
